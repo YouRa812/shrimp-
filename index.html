@@ -1,0 +1,941 @@
+<!doctype html>
+<html lang="ru" class="bg-[#070104]">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/png" href="./logo-Ce5GVdeg.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>SHRIMP PUB // 20 КРАНОВ & КРЕВЕТОЧНЫЙ ШТАБ</title>
+
+    <script>
+      // Force page to always launch and reload from the absolute top
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual';
+      }
+      window.scrollTo(0, 0);
+      if (window.location.hash) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    </script>
+
+    <!-- Contemporary Avant-Garde Fonts: Unbounded, Space Grotesk, JetBrains Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&family=Unbounded:wght@400;600;700;800;900&display=swap" rel="stylesheet">
+    <script type="module" crossorigin src="./index-t0UVz6p9.js"></script>
+    <link rel="stylesheet" crossorigin href="./index-BjMYj31d.css">
+  </head>
+  <body class="bg-[#070104] text-neutral-100 antialiased selection:bg-[#ff1e27] selection:text-white bg-grain relative min-h-screen">
+
+    <!-- Fixed Full-Screen Seamless Animated Background Canvas (Sides & Hero) -->
+    <div class="page-bg-canvas">
+      <canvas id="beer-atmosphere-canvas" class="absolute inset-0 w-full h-full pointer-events-none z-10"></canvas>
+      <div class="bg-grain-overlay"></div>
+    </div>
+
+    <!-- Captcha Mini-Game Mount Point -->
+    <div id="captcha-mount"></div>
+
+    <!-- Toast Notifications Container -->
+    <div id="toast-container" class="fixed top-20 right-4 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- ==================== REDESIGNED HEADER ==================== -->
+    <header id="main-header" class="fixed top-0 left-0 right-0 z-40 px-3 sm:px-6 py-3">
+      <div class="max-w-[1320px] mx-auto flex items-center justify-between px-4 sm:px-6 py-2.5 rounded-2xl header-glass">
+        
+        <!-- Left: Official Shield Logo + Brand Name (Always Visible) -->
+        <a href="#hero" class="flex items-center gap-2 sm:gap-3 group shrink-0">
+          <img 
+            src="./logo-Ce5GVdeg.png" 
+            alt="ShrimpPub Saint-P" 
+            class="h-7 sm:h-10 w-auto object-contain filter drop-shadow-[0_0_12px_rgba(255,30,39,0.35)] group-hover:scale-105 transition-transform duration-300" 
+          />
+          <span class="text-xs sm:text-sm font-black tracking-tight uppercase text-white font-unbounded leading-none flex items-center">
+            SHRIMP<span class="text-red-500">PUB</span>
+          </span>
+        </a>
+
+        <!-- Center: Navigation (Desktop) -->
+        <nav class="hidden lg:flex items-center gap-5 text-[11px] font-mono-tech tracking-wider uppercase text-neutral-400">
+          <a href="#menu-deck" data-tab-trigger="draft" class="nav-link">Пивная карта</a>
+          <a href="#story-deck" class="nav-link">История</a>
+          <a href="#events-deck" class="nav-link">Вечера</a>
+          <a href="#reviews-deck" class="nav-link flex items-center gap-1.5">
+            <span>Отзывы</span>
+            <span class="px-1.5 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[9px] font-bold leading-none">4.9★</span>
+          </a>
+        </nav>
+
+        <!-- Right: Actions (Delivery & Pickup buttons on Mobile & Desktop, sound/game hidden on mobile) -->
+        <div class="flex items-center gap-1 sm:gap-2">
+          <!-- Delivery Lock (Bright grey lock directly on inscription) -->
+          <button 
+            id="btn-delivery-lock" 
+            class="relative group px-2.5 sm:px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer flex items-center justify-center select-none"
+            title="Доставка пока недоступна"
+          >
+            <span class="relative inline-flex items-center justify-center">
+              <span class="text-[10px] sm:text-[11px] font-mono-tech tracking-wider uppercase text-neutral-400 group-hover:text-neutral-200 transition-colors">
+                Доставка
+              </span>
+              <!-- Bright grey closed lock directly ON the inscription -->
+              <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg class="w-4 h-4 text-slate-100 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V10" stroke="#f1f5f9" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect x="4" y="10" width="16" height="12" rx="3" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.5"/>
+                  <circle cx="12" cy="15" r="1.5" fill="#0f172a"/>
+                  <path d="M12 16.5V18.5" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <!-- Pickup Half-Lock (Bright grey half-open lock directly on inscription) -->
+          <button 
+            id="btn-pickup-halflock" 
+            class="relative group px-2.5 sm:px-3 py-1.5 rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 transition-all cursor-pointer flex items-center justify-center select-none"
+            title="Самовывоз скоро"
+          >
+            <span class="relative inline-flex items-center justify-center">
+              <span class="text-[10px] sm:text-[11px] font-mono-tech tracking-wider uppercase text-neutral-400 group-hover:text-neutral-200 transition-colors">
+                Самовывоз
+              </span>
+              <!-- Bright grey half-open lock directly ON the inscription -->
+              <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg class="w-4 h-4 text-slate-100 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 5C7 3.34315 8.34315 2 10 2C11.6569 2 13 3.34315 13 5V10" stroke="#f1f5f9" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect x="4" y="10" width="16" height="12" rx="3" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.5"/>
+                  <circle cx="12" cy="15" r="1.5" fill="#0f172a"/>
+                  <path d="M12 16.5V18.5" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <!-- Booking CTA (Desktop/Tablet) -->
+          <a 
+            href="#booking-deck" 
+            class="btn-magnetic hidden sm:inline-flex items-center gap-1.5 px-3.5 sm:px-4 py-2 rounded-lg bg-red-600 hover:bg-red-500 text-white text-[11px] font-black uppercase font-unbounded tracking-wider transition-all"
+          >
+            Бронь ↗
+          </a>
+
+          <!-- Sound Toggle (Desktop only: hidden on mobile) -->
+          <button 
+            id="btn-sound-toggle" 
+            class="hidden lg:flex w-8 h-8 rounded-lg bg-white/5 hover:bg-white/10 border border-white/8 text-neutral-300 hover:text-white items-center justify-center text-xs transition-all"
+            title="Фоновая музыка: Gerry & The Pacemakers — You'll Never Walk Alone"
+          >
+            <span id="sound-icon">🎵</span>
+          </button>
+
+          <!-- Hamburger Toggle (Mobile / Tablet < lg) -->
+          <button 
+            id="btn-mobile-menu-toggle" 
+            class="lg:hidden w-8 h-8 rounded-lg bg-white/8 hover:bg-white/15 border border-white/12 text-white flex flex-col items-center justify-center gap-1 p-1.5 transition-all shrink-0"
+            aria-label="Навигация"
+            title="Меню навигации"
+          >
+            <span class="burger-bar-1 w-4 h-[2px] bg-white rounded-full transition-all duration-300"></span>
+            <span class="burger-bar-2 w-4 h-[2px] bg-white rounded-full transition-all duration-300"></span>
+            <span class="burger-bar-3 w-4 h-[2px] bg-white rounded-full transition-all duration-300"></span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- ==================== MOBILE NAVIGATION DRAWER (FULL SCREEN GLASS) ==================== -->
+    <div 
+      id="mobile-nav-drawer" 
+      class="fixed inset-0 z-50 bg-[#070104]/96 backdrop-blur-2xl transition-all duration-300 opacity-0 pointer-events-none flex flex-col justify-between p-5 sm:p-8"
+      aria-hidden="true"
+    >
+      <!-- Drawer Top Bar -->
+      <div class="flex items-center justify-between border-b border-white/10 pb-4">
+        <a href="#hero" data-mobile-nav class="flex items-center gap-3">
+          <img src="./logo-Ce5GVdeg.png" alt="ShrimpPub" class="h-9 w-auto" />
+          <span class="text-sm font-black text-white font-unbounded">SHRIMP<span class="text-red-500">PUB</span></span>
+        </a>
+        <button 
+          id="btn-close-mobile-menu" 
+          class="w-9 h-9 rounded-xl bg-white/10 hover:bg-white/20 border border-white/10 text-white flex items-center justify-center text-base transition-colors"
+          aria-label="Закрыть меню"
+        >
+          ✕
+        </button>
+      </div>
+
+      <!-- Drawer Nav Links -->
+      <nav class="flex flex-col gap-2.5 py-4 font-mono-tech tracking-wider uppercase text-sm">
+        <a 
+          href="#menu-deck" 
+          data-mobile-nav 
+          data-tab-trigger="draft" 
+          class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/8 transition-colors"
+        >
+          <span class="flex items-center gap-3">
+            <span class="text-lg">🍺</span>
+            <span class="font-bold">Пивная карта</span>
+          </span>
+          <span class="px-2 py-0.5 rounded-full bg-red-600 text-white text-[10px] font-bold">20 кранов</span>
+        </a>
+
+        <a 
+          href="#story-deck" 
+          data-mobile-nav 
+          class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/8 transition-colors"
+        >
+          <span class="flex items-center gap-3">
+            <span class="text-lg">📜</span>
+            <span class="font-bold">История штаба</span>
+          </span>
+          <span class="text-[10px] text-neutral-400 font-mono-tech">EST. 2020</span>
+        </a>
+
+        <a 
+          href="#events-deck" 
+          data-mobile-nav 
+          class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/8 transition-colors"
+        >
+          <span class="flex items-center gap-3">
+            <span class="text-lg">💿</span>
+            <span class="font-bold">Вечера & События</span>
+          </span>
+          <span class="text-[10px] text-amber-400 font-mono-tech">Винил / Квиз</span>
+        </a>
+
+        <a 
+          href="#reviews-deck" 
+          data-mobile-nav 
+          class="flex items-center justify-between p-3.5 rounded-xl bg-white/5 hover:bg-white/10 text-white border border-white/8 transition-colors"
+        >
+          <span class="flex items-center gap-3">
+            <span class="text-lg">⭐️</span>
+            <span class="font-bold">Отзывы Яндекс</span>
+          </span>
+          <span class="px-2 py-0.5 rounded bg-amber-500/20 text-amber-400 text-[10px] font-bold">4.9★</span>
+        </a>
+
+        <a 
+          href="#booking-deck" 
+          data-mobile-nav 
+          class="flex items-center justify-between p-3.5 rounded-xl bg-gradient-to-r from-red-600 to-rose-600 text-white font-unbounded font-black text-xs uppercase tracking-wider shadow-[0_0_25px_rgba(255,30,39,0.5)] mt-1"
+        >
+          <span class="flex items-center gap-2">
+            <span>📍</span>
+            <span>Забронировать стол</span>
+          </span>
+          <span>↗</span>
+        </a>
+      </nav>
+
+      <!-- Drawer Bottom: Quick Info & Contacts -->
+      <div class="border-t border-white/10 pt-4 flex flex-col gap-3">
+        <div class="grid grid-cols-2 gap-2">
+          <button 
+            id="btn-drawer-delivery" 
+            class="relative group flex items-center justify-center py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors select-none"
+          >
+            <span class="relative inline-flex items-center justify-center">
+              <span class="text-xs font-mono-tech tracking-wider uppercase text-neutral-400 group-hover:text-neutral-200">
+                Доставка
+              </span>
+              <!-- Bright grey closed lock directly ON the inscription -->
+              <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg class="w-4 h-4 text-slate-100 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 10V7C7 4.23858 9.23858 2 12 2C14.7614 2 17 4.23858 17 7V10" stroke="#f1f5f9" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect x="4" y="10" width="16" height="12" rx="3" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.5"/>
+                  <circle cx="12" cy="15" r="1.5" fill="#0f172a"/>
+                  <path d="M12 16.5V18.5" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </button>
+
+          <button 
+            id="btn-drawer-pickup" 
+            class="relative group flex items-center justify-center py-2.5 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 transition-colors select-none"
+          >
+            <span class="relative inline-flex items-center justify-center">
+              <span class="text-xs font-mono-tech tracking-wider uppercase text-neutral-400 group-hover:text-neutral-200">
+                Самовывоз
+              </span>
+              <!-- Bright grey half-open lock directly ON the inscription -->
+              <span class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <svg class="w-4 h-4 text-slate-100 filter drop-shadow-[0_2px_5px_rgba(0,0,0,0.95)]" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M7 5C7 3.34315 8.34315 2 10 2C11.6569 2 13 3.34315 13 5V10" stroke="#f1f5f9" stroke-width="2.4" stroke-linecap="round"/>
+                  <rect x="4" y="10" width="16" height="12" rx="3" fill="#cbd5e1" stroke="#f8fafc" stroke-width="1.5"/>
+                  <circle cx="12" cy="15" r="1.5" fill="#0f172a"/>
+                  <path d="M12 16.5V18.5" stroke="#0f172a" stroke-width="1.6" stroke-linecap="round"/>
+                </svg>
+              </span>
+            </span>
+          </button>
+        </div>
+
+        <!-- Audio / Music Controller in Drawer -->
+        <button 
+          id="btn-drawer-sound" 
+          class="w-full flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/10 text-white text-xs font-mono-tech transition-colors"
+        >
+          <div class="flex items-center gap-2.5">
+            <span id="drawer-sound-icon" class="text-base">🎵</span>
+            <div class="text-left">
+              <div class="font-bold text-[11px] text-white">МУЗЫКА ПАБА</div>
+              <div class="text-[9px] text-neutral-400 truncate max-w-[190px]">You'll Never Walk Alone</div>
+            </div>
+          </div>
+          <span id="drawer-sound-state" class="px-2 py-0.5 rounded text-[10px] font-bold bg-red-600/30 text-red-400 border border-red-500/30">ВКЛ</span>
+        </button>
+
+        <div class="flex items-center justify-between text-xs font-mono-tech text-neutral-400 pt-1">
+          <div class="truncate max-w-[200px]">просп. Энгельса, 58А 1 этаж</div>
+          <a href="tel:+78129230199" class="text-white font-bold hover:text-red-400 transition-colors shrink-0">
+            +7 (812) 923-01-99
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Container -->
+    <main id="smooth-wrapper" class="relative z-10 pt-14">
+      <div id="smooth-content">
+
+        <!-- ================= HERO SECTION (CLEAN FULL-BLEED, GIANT HEADLINE & SHRIMP) ================= -->
+        <section id="hero" class="relative w-full min-h-[94vh] flex flex-col items-center justify-center text-center px-4 pt-10 pb-12 z-0">
+          
+          <div class="relative w-full flex flex-col items-center justify-center my-auto">
+            
+            <!-- Giant Headline SHRIMPPUB (100% visible, bold avant-garde) -->
+            <div class="relative z-10 w-full text-center px-2">
+              <h1 class="hero-title">
+                <span class="hero-title-shrimp">SHRIMP</span><span class="hero-title-pub">PUB</span>
+              </h1>
+            </div>
+
+            <!-- Massive Mascot Shrimp (креветка.png) with 3D Parallax Tilt, positioned neatly below headline -->
+            <div id="hero-shrimp-container" class="relative -mt-4 sm:-mt-6 md:-mt-2 lg:mt-2 xl:mt-4 z-20 flex justify-center items-center pointer-events-none perspective-[1000px]">
+              <img 
+                id="hero-shrimp-img"
+                src="./krevetka-Bg1OkWaT.png" 
+                alt="Shrimp Mascot" 
+                title="Нажми на меня, чтобы услышать мудрость Креветки!"
+                class="w-[310px] sm:w-[440px] md:w-[520px] lg:w-[620px] xl:w-[680px] object-contain filter drop-shadow-[0_25px_60px_rgba(0,0,0,0.98)] will-change-transform pointer-events-auto cursor-pointer select-none"
+              />
+            </div>
+
+            <!-- Action Buttons Directly Under Shrimp -->
+            <div class="relative z-30 flex flex-wrap items-center justify-center gap-3 sm:gap-4 mt-2 sm:mt-4">
+              <a 
+                href="#menu-deck" 
+                class="btn-magnetic px-8 sm:px-10 py-3.5 sm:py-4 rounded-2xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black font-unbounded text-xs sm:text-sm tracking-widest uppercase shadow-[0_0_35px_rgba(255,30,39,0.5)] transition-all active:scale-95 flex items-center gap-3"
+              >
+                <span>ПИВНАЯ ЛИНЕЙКА</span>
+                <span class="text-base">🍺</span>
+              </a>
+
+              <a 
+                href="#booking-deck" 
+                class="px-8 py-3.5 sm:py-4 rounded-2xl bg-black/60 hover:bg-neutral-900 text-neutral-200 hover:text-white border border-red-500/40 text-xs sm:text-sm font-mono-tech tracking-wider uppercase transition-all duration-200 flex items-center gap-2 backdrop-blur-md"
+              >
+                <span>ЗАБРОНИРОВАТЬ СТОЛ</span>
+                <span class="text-red-400">↗</span>
+              </a>
+            </div>
+
+            <!-- Two Stats Below (20+ Cranes & 4.9★ Yandex with Odometer Roll-up) -->
+            <div class="relative z-30 flex items-center justify-center gap-8 sm:gap-14 mt-6 pt-5 border-t border-red-500/20 w-full max-w-sm sm:max-w-md">
+              <div class="text-center">
+                <span id="odometer-cranes" class="block text-2xl sm:text-3xl font-black text-white font-unbounded">20+</span>
+                <span class="text-[10px] sm:text-xs text-neutral-400 uppercase font-mono-tech tracking-wider">КРАНОВ В РОТАЦИИ</span>
+              </div>
+              <div class="h-8 sm:h-10 w-px bg-red-500/20"></div>
+              <div class="text-center">
+                <a href="#reviews-deck" class="group block">
+                  <span id="odometer-rating" class="text-2xl sm:text-3xl font-black text-amber-400 font-unbounded flex items-center justify-center gap-1 group-hover:text-amber-300 transition-colors">
+                    4.9★
+                  </span>
+                  <span class="text-[10px] sm:text-xs text-neutral-400 uppercase font-mono-tech tracking-wider group-hover:text-neutral-300">184 ОТЗЫВА ЯНДЕКС ↗</span>
+                </a>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ================= CARD 2: WHITE PRESENTATION SLIDE — ПИВНАЯ ЛИНЕЙКА ================= -->
+        <section id="menu-deck" class="deck-card canvas-white p-3.5 sm:p-8 lg:p-14 z-10 mt-8 sm:mt-12 lg:mt-10 relative">
+          
+          <!-- Mobile Top Peeking Shrimp (Mounted on top of card with claws gripping top border) -->
+          <div id="menu-top-shrimp" class="mobile-top-shrimp-container lg:hidden">
+            <img 
+              src="./vkusnomob-tPNspmhW.png" 
+              alt="Это реально вкусно!" 
+              class="mobile-top-shrimp-img w-full h-auto object-contain will-change-transform"
+            />
+          </div>
+
+          <!-- Desktop Side Peeking Shrimp (Holding right card border with claws) -->
+          <div id="menu-peeking-shrimp" class="peeking-shrimp-container hidden lg:block">
+            <img 
+              src="./vkusno-BRs4oRav.png" 
+              alt="Это реально вкусно!" 
+              class="peeking-shrimp-img w-full h-auto object-contain will-change-transform"
+            />
+          </div>
+
+          <!-- Editorial Header: UNIFIED SWIPER MENU -->
+          <div class="mb-4 sm:mb-8 relative">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+              <div class="flex items-center gap-2">
+                <span class="badge-asterisk">*</span>
+                <span class="text-[10px] sm:text-xs font-mono-tech uppercase font-bold tracking-widest text-red-600">ГАСТРОНОМИЧЕСКАЯ И БАРНАЯ КАРТА</span>
+              </div>
+              <!-- Category Counter & Quick Arrows -->
+              <div class="flex items-center gap-2 font-mono-tech">
+                <button id="menu-btn-prev" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Предыдущий раздел">←</button>
+                <span id="menu-counter-indicator" class="px-3 py-1 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold tracking-wider">01 / 13</span>
+                <button id="menu-btn-next" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Следующий раздел">→</button>
+              </div>
+            </div>
+
+            <!-- Main Title: МЕНЮ -->
+            <h2 class="text-3xl sm:text-5xl lg:text-6xl font-black text-black uppercase tracking-tight font-unbounded leading-none">
+              МЕНЮ
+            </h2>
+
+            <!-- Dynamic Category Subheader: ПИВО (or active category) -->
+            <div class="flex items-baseline gap-2.5 sm:gap-3 mt-2 sm:mt-3 flex-wrap">
+              <span id="menu-category-num" class="text-xs sm:text-sm font-mono-tech font-bold text-red-600 tracking-widest">РАЗДЕЛ 01</span>
+              <h3 id="menu-category-title" class="text-xl sm:text-3xl lg:text-4xl font-black text-red-600 uppercase tracking-tight font-unbounded">
+                ПИВО
+              </h3>
+              <span id="menu-category-badge" class="px-2.5 py-0.5 rounded-full bg-red-100 text-red-700 text-[10px] sm:text-xs font-mono-tech font-bold uppercase">
+                20 кранов
+              </span>
+            </div>
+
+            <p id="menu-category-desc" class="text-[11px] sm:text-xs text-neutral-600 font-mono-tech mt-1 sm:mt-2 max-w-2xl leading-relaxed">
+              Свежий розлив с правильной карбонизацией, мягкий азотный стаут, баварская пшеничная классика и бельгийские кислые эли.
+            </p>
+
+            <!-- Explicit Swipe Cue Pill: ONLY 'СВАЙПАЙТЕ ВЛЕВО ➔' as requested -->
+            <div id="menu-swipe-hint" class="mt-4 flex items-center justify-between p-3 sm:p-3.5 rounded-2xl bg-gradient-to-r from-red-500/10 via-amber-500/10 to-transparent border border-red-500/30 select-none cursor-pointer hover:border-red-500 transition-colors">
+              <div class="flex items-center gap-2.5">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-ping"></span>
+                <span class="text-xs sm:text-sm font-black uppercase font-unbounded text-red-700">
+                  СВАЙПАЙТЕ ВЛЕВО ➔
+                </span>
+                <span class="hidden sm:inline text-xs font-mono-tech text-neutral-500">
+                  (листайте пальцем или стрелками)
+                </span>
+              </div>
+              <div class="text-red-600 text-sm font-bold animate-swipe-bounce">
+                ➔
+              </div>
+            </div>
+
+            <!-- Category Quick-Jump Chips (On mobile shows ONLY selected section; on desktop shows full row) -->
+            <div id="menu-quick-chips" class="w-full flex items-center justify-center sm:justify-start gap-1.5 sm:gap-2 overflow-hidden sm:overflow-x-auto py-2.5 mt-3 no-scrollbar border-b border-black/10 select-none">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <!-- Swiper Container & Content Viewport -->
+          <div id="menu-swiper-viewport" class="relative w-full overflow-hidden select-none min-h-[480px]">
+            <div id="menu-swiper-track" class="w-full transition-transform duration-500 ease-out">
+              
+              <!-- Category Slide Content (Draft Beers or Food/Spirits Tiles) -->
+              <div id="menu-active-content" class="w-full">
+                <!-- Injected dynamically via JS: either beer cards or food/spirits tiles -->
+              </div>
+
+            </div>
+          </div>
+
+          <!-- Beer Subfilters & Controls (Only visible when on Beer slide) -->
+          <div id="draft-beer-controls" class="mt-6 pt-4 border-t border-black/10">
+            <div class="flex flex-wrap items-center justify-between gap-2 sm:gap-3 mb-4">
+              <div class="flex flex-wrap items-center gap-1.5 font-mono-tech">
+                <button data-filter-style="all" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-black text-white text-[10px] sm:text-xs font-bold">Все сорта (20)</button>
+                <button data-filter-style="lager" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 text-[10px] sm:text-xs">Лагеры</button>
+                <button data-filter-style="wheat" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 text-[10px] sm:text-xs">Пшеничное</button>
+                <button data-filter-style="ipa" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 text-[10px] sm:text-xs">Эли & ИПА</button>
+                <button data-filter-style="stout" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 text-[10px] sm:text-xs">Стаут & Азот</button>
+                <button data-filter-style="fruit" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-neutral-200/80 hover:bg-neutral-300 text-neutral-800 text-[10px] sm:text-xs">Фруктовое & Сидр</button>
+                <button data-filter-style="rotation" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-red-100 border border-red-500/40 text-red-700 text-[10px] sm:text-xs font-bold flex items-center gap-1">
+                  <span>🔥 Ротация</span>
+                </button>
+                <button id="btn-beer-roulette" class="subfilter-btn px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-lg sm:rounded-xl bg-gradient-to-r from-red-600/20 to-amber-500/20 hover:from-red-600 hover:to-amber-500 text-red-700 hover:text-white border border-red-500/40 text-[10px] sm:text-xs font-bold flex items-center gap-1 transition-all" title="Бармен выберет сорт за вас">
+                  <span>🎲 Пивная рулетка</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Expand / Collapse All Beers Button -->
+            <div id="menu-expand-container" class="my-4 flex justify-center">
+              <button 
+                id="btn-toggle-all-beers" 
+                class="btn-magnetic group relative inline-flex items-center gap-2 sm:gap-3 px-5 sm:px-12 py-3 sm:py-4 rounded-xl sm:rounded-2xl bg-black hover:bg-red-600 text-white font-black font-unbounded text-xs sm:text-sm tracking-wider uppercase transition-all duration-300 shadow-[0_10px_30px_rgba(0,0,0,0.3)] hover:shadow-[0_15px_35px_rgba(255,30,39,0.4)]"
+              >
+                <span id="btn-toggle-icon" class="text-sm sm:text-base transition-transform duration-300 group-hover:translate-y-0.5">🍺</span>
+                <span id="btn-toggle-text">ПОКАЗАТЬ ВСЕ 20 СОРТОВ КРАНА</span>
+                <span id="btn-toggle-badge" class="px-2 py-0.5 rounded-full bg-red-600 group-hover:bg-white text-white group-hover:text-black text-[10px] font-mono-tech font-bold transition-colors">20</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Guest Tap Banner -->
+          <div class="mt-6 sm:mt-12 p-4 sm:p-6 rounded-2xl sm:rounded-3xl bg-neutral-900 text-white flex flex-col sm:flex-row items-center justify-between gap-3.5 sm:gap-6 shadow-xl">
+            <div class="flex items-center gap-3.5 sm:gap-4">
+              <div class="w-10 h-10 sm:w-12 sm:h-12 rounded-xl sm:rounded-2xl bg-red-600/30 border border-red-500/50 flex items-center justify-center text-xl sm:text-2xl shrink-0">🚰</div>
+              <div>
+                <div class="text-xs sm:text-sm font-black uppercase text-white font-unbounded">ГОСТЕВОЙ КРАН ВСЕГДА В РОТАЦИИ</div>
+                <div class="text-[11px] sm:text-xs text-neutral-400 font-mono-tech">Уточни наличие у бармена • Свежая бочка подключается каждую неделю</div>
+              </div>
+            </div>
+            <div class="text-left sm:text-right text-[10px] sm:text-xs text-neutral-400 font-mono-tech italic max-w-sm">
+              Чрезмерное употребление алкоголя вредит вашему здоровью, но делает дегустацию креветок интереснее.
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================= CARD 3: WHITE PRESENTATION SLIDE — ИСТОРИЯ С АНИМАЦИЕЙ «МЕЛЬНИЦЫ» ================= -->
+        <section id="story-deck" class="deck-card canvas-white p-3.5 sm:p-8 lg:p-14 z-20">
+          
+          <div class="mb-4 sm:mb-8">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+              <div class="flex items-center gap-1.5 sm:gap-2.5">
+                <span class="badge-asterisk">*</span>
+                <span class="text-[10px] sm:text-xs font-mono-tech uppercase font-bold tracking-widest text-red-600">ИСТОРИЯ ШТАБА</span>
+              </div>
+              <!-- Windmill Carousel Step & Controls -->
+              <div class="flex items-center gap-2 font-mono-tech">
+                <button id="story-btn-prev" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Предыдущий этап">←</button>
+                <span id="story-step-indicator" class="px-3 py-1 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold tracking-wider">01 / 03</span>
+                <button id="story-btn-next" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Следующий этап">→</button>
+              </div>
+            </div>
+
+            <h2 class="text-sm xs:text-base sm:text-2xl lg:text-4xl font-black text-black uppercase tracking-tight font-unbounded leading-snug">
+              МЫ ПРЕВРАЩАЕМ ХМЕЛЬ <span class="headline-capsule">CRAFT</span> В КУЛЬТУРНЫЙ МАНИФЕСТ
+            </h2>
+            <p class="text-[11px] sm:text-xs text-neutral-600 font-mono-tech mt-1 sm:mt-2 max-w-xl leading-relaxed">
+              История заведения и ключевые этапы развития Shrimp Pub. Листается по одному блоку с анимацией вращения «мельницы».
+            </p>
+
+            <!-- Explicit Story Swipe Cue -->
+            <div id="story-swipe-hint" class="mt-3.5 flex items-center justify-between p-2.5 sm:p-3 px-4 rounded-xl bg-neutral-100 border border-neutral-200 select-none cursor-pointer hover:border-neutral-400 transition-colors">
+              <div class="flex items-center gap-2 text-xs font-mono-tech text-neutral-700">
+                <span class="text-red-600 font-bold">⟵ СВАЙПАЙТЕ ВЛЕВО</span>
+                <span>(анимация «мельницы» при перелистывании)</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs font-mono-tech font-bold text-red-600 animate-swipe-bounce">
+                <span>Следующая веха</span>
+                <span>➔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- 3D Windmill Carousel Stage: One Block at a Time (Clean Stub Blocks as requested) -->
+          <div id="story-windmill-stage" class="windmill-stage relative w-full overflow-hidden min-h-[340px] sm:min-h-[300px] select-none">
+            
+            <!-- MILESTONE 1 (Stub Block) -->
+            <div class="windmill-card active group rounded-2xl sm:rounded-3xl bg-neutral-900 text-white p-5 sm:p-8 flex flex-col justify-between shadow-2xl border border-neutral-800" data-story-index="0">
+              <div>
+                <div class="flex items-center justify-between mb-4 sm:mb-6">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-red-500 animate-pulse"></span>
+                    <span class="text-xs sm:text-sm font-mono-tech text-red-400 font-bold uppercase tracking-widest">ПУНКТ 01</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-red-600/30 text-red-400 font-mono-tech text-xs sm:text-sm font-bold border border-red-500/30">01 / 03</span>
+                </div>
+                <h3 class="text-lg sm:text-2xl font-black uppercase text-white font-unbounded mb-3 leading-tight">
+                  ПУНКТ 1
+                </h3>
+                <p class="text-xs sm:text-sm text-neutral-300 font-mono-tech leading-relaxed max-w-3xl">
+                  Информация по пункту 1 будет добавлена в ближайшее время.
+                </p>
+              </div>
+              <div class="mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-mono-tech text-neutral-400">
+                <span>Пункт 1</span>
+                <span>Shrimp Pub</span>
+              </div>
+            </div>
+
+            <!-- MILESTONE 2 (Stub Block) -->
+            <div class="windmill-card enter-right group rounded-2xl sm:rounded-3xl bg-neutral-900 text-white p-5 sm:p-8 flex flex-col justify-between shadow-2xl border border-neutral-800" data-story-index="1">
+              <div>
+                <div class="flex items-center justify-between mb-4 sm:mb-6">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 animate-pulse"></span>
+                    <span class="text-xs sm:text-sm font-mono-tech text-amber-400 font-bold uppercase tracking-widest">ПУНКТ 02</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-amber-500/30 text-amber-400 font-mono-tech text-xs sm:text-sm font-bold border border-amber-500/30">02 / 03</span>
+                </div>
+                <h3 class="text-lg sm:text-2xl font-black uppercase text-white font-unbounded mb-3 leading-tight">
+                  ПУНКТ 2
+                </h3>
+                <p class="text-xs sm:text-sm text-neutral-300 font-mono-tech leading-relaxed max-w-3xl">
+                  Информация по пункту 2 будет добавлена в ближайшее время.
+                </p>
+              </div>
+              <div class="mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-mono-tech text-neutral-400">
+                <span>Пункт 2</span>
+                <span>Shrimp Pub</span>
+              </div>
+            </div>
+
+            <!-- MILESTONE 3 (Stub Block) -->
+            <div class="windmill-card enter-right group rounded-2xl sm:rounded-3xl bg-neutral-900 text-white p-5 sm:p-8 flex flex-col justify-between shadow-2xl border border-neutral-800" data-story-index="2">
+              <div>
+                <div class="flex items-center justify-between mb-4 sm:mb-6">
+                  <div class="flex items-center gap-2">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-xs sm:text-sm font-mono-tech text-emerald-400 font-bold uppercase tracking-widest">ПУНКТ 03</span>
+                  </div>
+                  <span class="px-3 py-1 rounded-full bg-emerald-500/30 text-emerald-400 font-mono-tech text-xs sm:text-sm font-bold border border-emerald-500/30">03 / 03</span>
+                </div>
+                <h3 class="text-lg sm:text-2xl font-black uppercase text-white font-unbounded mb-3 leading-tight">
+                  ПУНКТ 3
+                </h3>
+                <p class="text-xs sm:text-sm text-neutral-300 font-mono-tech leading-relaxed max-w-3xl">
+                  Информация по пункту 3 будет добавлена в ближайшее время.
+                </p>
+              </div>
+              <div class="mt-6 pt-3.5 border-t border-white/10 flex items-center justify-between text-xs font-mono-tech text-neutral-400">
+                <span>Пункт 3</span>
+                <span>Shrimp Pub</span>
+              </div>
+            </div>
+
+          </div>
+
+        </section>
+
+        <!-- ================= CARD 4: WHITE PRESENTATION SLIDE — ВЕЧЕРА & АКЦИИ (Horizontal Swiper, No Windmill) ================= -->
+        <section id="events-deck" class="deck-card canvas-white p-3.5 sm:p-8 lg:p-14 z-30">
+          
+          <div class="mb-4 sm:mb-8">
+            <div class="flex items-center justify-between flex-wrap gap-2 mb-2">
+              <div class="flex items-center gap-1.5 sm:gap-2.5">
+                <span class="badge-asterisk">*</span>
+                <span class="text-[10px] sm:text-xs font-mono-tech uppercase font-bold tracking-widest text-red-600">АТМОСФЕРА & СОБЫТИЯ</span>
+              </div>
+              <!-- Events Step & Controls -->
+              <div class="flex items-center gap-2 font-mono-tech">
+                <button id="events-btn-prev" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Предыдущая акция">←</button>
+                <span id="events-step-indicator" class="px-3 py-1 rounded-full bg-black text-white text-[11px] sm:text-xs font-bold tracking-wider">01 / 04</span>
+                <button id="events-btn-next" class="w-8 h-8 rounded-full bg-neutral-100 hover:bg-black hover:text-white border border-neutral-300 flex items-center justify-center transition-all text-sm font-bold shadow-sm" aria-label="Следующая акция">→</button>
+              </div>
+            </div>
+
+            <h2 class="text-sm xs:text-base sm:text-2xl lg:text-4xl font-black text-black uppercase tracking-tight font-unbounded leading-snug">
+              АТМОСФЕРНЫЕ ВЕЧЕРА <span class="headline-capsule">EVENTS</span> И АКЦИИ
+            </h2>
+            <p class="text-[11px] sm:text-xs text-neutral-600 font-mono-tech mt-1 sm:mt-2 max-w-xl leading-relaxed">
+              Каждую неделю у нас живые поводы собраться с друзьями за бокалом холодного крафта.
+            </p>
+
+            <!-- Explicit Events Swipe Cue -->
+            <div id="events-swipe-hint" class="mt-3.5 flex items-center justify-between p-2.5 sm:p-3 px-4 rounded-xl bg-neutral-100 border border-neutral-200 select-none cursor-pointer hover:border-neutral-400 transition-colors">
+              <div class="flex items-center gap-2 text-xs font-mono-tech text-neutral-700">
+                <span class="text-red-600 font-bold">⟵ СВАЙПАЙТЕ ВЛЕВО</span>
+                <span>(листайте акции)</span>
+              </div>
+              <div class="flex items-center gap-1 text-xs font-mono-tech font-bold text-red-600 animate-swipe-bounce">
+                <span>Следующая акция</span>
+                <span>➔</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Events Swiper Viewport (Horizontal Sliding Carousel) -->
+          <div id="events-swiper-viewport" class="relative w-full overflow-hidden select-none min-h-[220px]">
+            <div id="events-active-content" class="w-full">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+        </section>
+
+        <!-- ================= CARD 5: WHITE PRESENTATION SLIDE — ОТЗЫВЫ ИЗ ЯНДЕКС КАРТ ================= -->
+        <section id="reviews-deck" class="deck-card canvas-white p-3.5 sm:p-6 lg:py-6 lg:px-10 z-40">
+          
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 sm:gap-4 mb-3 sm:mb-4 pb-2.5 sm:pb-3 border-b border-black/10">
+            <div>
+              <div class="flex items-center gap-1.5 mb-0.5">
+                <span class="badge-asterisk !w-3.5 !h-3.5 !text-[8px]">*</span>
+                <span class="text-[10px] font-mono-tech uppercase font-bold tracking-widest text-red-600">ОЦЕНКА ГОСТЕЙ</span>
+              </div>
+              <h2 class="text-sm xs:text-base sm:text-xl lg:text-3xl font-black text-black uppercase tracking-tight font-unbounded">
+                ОТЗЫВЫ ИЗ ЯНДЕКС КАРТ
+              </h2>
+            </div>
+
+            <!-- Compact Rating Banner linking to exact URL -->
+            <a 
+              href="https://yandex.ru/maps/org/shrimp_pub/225095015509/?ll=30.322697%2C60.014952&z=14.18" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-2.5 px-3 py-1.5 sm:px-3.5 sm:py-2 rounded-xl bg-neutral-900 text-white border border-amber-500/30 hover:border-amber-400 transition-all shadow shrink-0"
+            >
+              <div class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-amber-500 text-black flex flex-col items-center justify-center font-black leading-none group-hover:scale-105 transition-transform font-unbounded shrink-0">
+                <span class="text-xs sm:text-sm">4.9</span>
+              </div>
+              <div>
+                <div class="flex items-center gap-1 text-amber-400 text-[11px] leading-tight">
+                  ★★★★★
+                </div>
+                <div class="text-[9px] sm:text-[10px] text-amber-300 font-mono-tech group-hover:underline">
+                  Яндекс Карты ↗
+                </div>
+              </div>
+            </a>
+          </div>
+
+          <!-- Animated Reviews Carousel (Auto-advancing Right to Left every 3 seconds) -->
+          <div id="reviews-carousel-wrapper" class="relative w-full overflow-hidden select-none">
+            <!-- Carousel Viewport & Moving Track -->
+            <div id="reviews-carousel-viewport" class="overflow-hidden rounded-2xl relative w-full">
+              <div 
+                id="reviews-track" 
+                class="flex transition-transform duration-700 ease-in-out will-change-transform"
+                style="transform: translateX(0%);"
+              >
+                <!-- Injected dynamically via JS -->
+              </div>
+            </div>
+
+            <!-- Navigation Controls (Arrows + Dots unified) -->
+            <div class="flex items-center justify-center gap-3 mt-3">
+              <button 
+                id="btn-reviews-prev" 
+                class="w-7 h-7 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-800 flex items-center justify-center text-xs transition-colors shadow-sm cursor-pointer"
+                title="Предыдущий отзыв"
+                aria-label="Предыдущий отзыв"
+              >
+                ←
+              </button>
+              <div id="reviews-carousel-dots" class="flex items-center gap-1.5">
+                <!-- Dots injected via JS -->
+              </div>
+              <button 
+                id="btn-reviews-next" 
+                class="w-7 h-7 rounded-full bg-neutral-100 hover:bg-neutral-200 border border-neutral-300 text-neutral-800 flex items-center justify-center text-xs transition-colors shadow-sm cursor-pointer"
+                title="Следующий отзыв"
+                aria-label="Следующий отзыв"
+              >
+                →
+              </button>
+            </div>
+          </div>
+
+          <!-- Compact Actions Row -->
+          <div class="mt-3 sm:mt-4 pt-3 border-t border-black/10 flex flex-wrap items-center justify-center gap-2 sm:gap-3">
+            <button 
+              id="btn-toggle-more-reviews" 
+              class="btn-magnetic group inline-flex items-center gap-1.5 px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-black hover:bg-red-600 text-white font-mono-tech text-[10px] sm:text-xs font-bold uppercase tracking-wider transition-all shadow-sm cursor-pointer"
+            >
+              <span id="btn-toggle-more-reviews-text">ПОКАЗАТЬ БОЛЬШЕ ОТЗЫВОВ</span>
+              <span id="btn-toggle-more-reviews-icon" class="text-[10px] transition-transform duration-300">↓</span>
+            </button>
+
+            <a 
+              href="https://yandex.ru/maps/org/shrimp_pub/225095015509/?ll=30.322697%2C60.014952&z=14.18" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-neutral-100 hover:bg-neutral-200 text-neutral-900 border border-neutral-300 text-[10px] sm:text-xs font-bold font-mono-tech uppercase tracking-wider transition-colors flex items-center gap-1 shadow-sm"
+            >
+              <span>СМОТРЕТЬ В ЯНДЕКС КАРТАХ</span>
+              <span class="text-amber-500">↗</span>
+            </a>
+
+            <button 
+              id="btn-write-review" 
+              class="btn-magnetic px-4 sm:px-5 py-2 sm:py-2.5 rounded-xl bg-red-600 hover:bg-red-500 text-white text-[10px] sm:text-xs font-black font-unbounded tracking-wider uppercase shadow-[0_0_15px_rgba(255,30,39,0.3)] transition-all"
+            >
+              ОСТАВИТЬ 5★ ОТЗЫВ
+            </button>
+          </div>
+
+          <!-- Expanded Reviews Grid (Shows on click "Показать больше") -->
+          <div id="reviews-expanded-grid" class="hidden grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5 sm:gap-6 mt-4 pt-4 border-t border-black/10">
+            <!-- Injected dynamically via JS -->
+          </div>
+
+        </section>
+
+        <!-- ================= CARD 6: DARK LUXURY CARD — БРОНЬ СТОЛИКА & КОНТАКТЫ (Slides over Reviews) ================= -->
+        <section id="booking-deck" class="deck-card canvas-dark p-3.5 sm:p-8 lg:p-14 z-50 mb-16 sm:mb-28">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center my-auto">
+            
+            <!-- Left Info -->
+            <div class="lg:col-span-5">
+              <div class="flex items-center gap-1.5 text-xs font-mono-tech uppercase text-red-400 mb-2 sm:mb-2.5">
+                <span class="badge-asterisk !w-3.5 !h-3.5 !text-[8px]">*</span>
+                <span>РЕЗЕРВ СТОЛИКОВ</span>
+              </div>
+              <h2 class="text-lg xs:text-xl sm:text-3xl lg:text-4xl font-black text-white uppercase tracking-tight font-unbounded mb-3 sm:mb-5">
+                ЗАБРОНИРУЙ СТОЛ <br />
+                <span class="text-transparent bg-clip-text bg-gradient-to-r from-red-500 to-amber-300">В SHRIMP PUB</span>
+              </h2>
+              <p class="text-[11px] sm:text-xs text-neutral-300 font-mono-tech leading-relaxed mb-4 sm:mb-6">
+                По вечерам и выходным у нас аншлаг, поэтому советуем бронировать столик заранее. Мы охладим бокалы и закрепим за вами лучшее место у кранов.
+              </p>
+
+              <div class="space-y-2.5 sm:space-y-3 text-xs font-mono-tech">
+                <div class="flex items-center gap-2.5 text-neutral-300">
+                  <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center text-xs shrink-0">📍</span>
+                  <span class="text-[11px] sm:text-xs">просп. Энгельса, 58А 1 этаж</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-neutral-300">
+                  <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center text-xs shrink-0">⏰</span>
+                  <span class="text-[11px] sm:text-xs">Пн-Чт: 15:00 - 01:00 • Пт-Сб: 15:00 - 03:00 • Вс: 15:00 - 01:00</span>
+                </div>
+                <div class="flex items-center gap-2.5 text-neutral-300">
+                  <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-black/60 border border-white/10 flex items-center justify-center text-xs shrink-0">📞</span>
+                  <a href="tel:+78129230199" class="hover:text-red-400 transition-colors font-bold text-xs sm:text-sm text-white">+7 (812) 923-01-99</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Booking Form -->
+            <div class="lg:col-span-7">
+              <div class="p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl bg-black/80 border border-red-500/30 shadow-[0_0_40px_rgba(255,30,39,0.2)]">
+                
+                <h3 class="text-sm sm:text-base font-black uppercase text-white font-unbounded mb-3 sm:mb-5 flex items-center justify-between">
+                  <span>ОНЛАЙН-РЕЗЕРВ СТОЛИКА</span>
+                  <span class="text-[10px] font-mono-tech text-red-400 font-normal">● БЫСТРО</span>
+                </h3>
+
+                <form id="booking-form" class="space-y-5">
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-mono-tech text-neutral-400 mb-1.5 uppercase">Ваше Имя</label>
+                      <input 
+                        type="text" 
+                        required 
+                        placeholder="Например, Александр" 
+                        class="w-full px-4 py-3.5 rounded-xl bg-neutral-950 border border-red-500/20 text-xs text-white placeholder-neutral-600 font-mono-tech focus:outline-none focus:border-red-500 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-xs font-mono-tech text-neutral-400 mb-1.5 uppercase">Телефон</label>
+                      <input 
+                        type="tel" 
+                        required 
+                        placeholder="+7 (___) ___-__-__" 
+                        class="w-full px-4 py-3.5 rounded-xl bg-neutral-950 border border-red-500/20 text-xs text-white placeholder-neutral-600 font-mono-tech focus:outline-none focus:border-red-500 transition-colors"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                      <label class="block text-xs font-mono-tech text-neutral-400 mb-1.5 uppercase">Дата</label>
+                      <input 
+                        type="date" 
+                        required 
+                        class="w-full px-4 py-3.5 rounded-xl bg-neutral-950 border border-red-500/20 text-xs text-white font-mono-tech focus:outline-none focus:border-red-500 transition-colors"
+                      />
+                    </div>
+                    <div>
+                      <label class="block text-xs font-mono-tech text-neutral-400 mb-1.5 uppercase">Время</label>
+                      <select class="w-full px-4 py-3.5 rounded-xl bg-neutral-950 border border-red-500/20 text-xs text-white font-mono-tech focus:outline-none focus:border-red-500 transition-colors">
+                        <option>15:00</option>
+                        <option>15:30</option>
+                        <option>16:00</option>
+                        <option>16:30</option>
+                        <option>17:00</option>
+                        <option>17:30</option>
+                        <option>18:00</option>
+                        <option>18:30</option>
+                        <option>19:00</option>
+                        <option>19:30</option>
+                        <option selected>20:00</option>
+                        <option>20:30</option>
+                        <option>21:00</option>
+                        <option>21:30</option>
+                        <option>22:00</option>
+                        <option>22:30</option>
+                        <option>23:00</option>
+                        <option>23:30</option>
+                        <option>00:00</option>
+                        <option>00:30</option>
+                        <option>01:00</option>
+                        <option>01:30 (Пт-Сб)</option>
+                        <option>02:00 (Пт-Сб)</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div>
+                    <div class="flex justify-between items-center mb-1.5">
+                      <label class="text-xs font-mono-tech text-neutral-400 uppercase">Сколько гостей:</label>
+                      <span id="guest-count-label" class="text-xs font-bold text-red-400 font-mono-tech">2 персоны (Дуэт ценителей)</span>
+                    </div>
+                    <input 
+                      id="guest-slider" 
+                      type="range" 
+                      min="1" 
+                      max="10" 
+                      value="2" 
+                      class="w-full accent-red-600 cursor-pointer"
+                    />
+                  </div>
+
+                  <button 
+                    type="submit" 
+                    class="btn-magnetic w-full py-4 rounded-xl bg-gradient-to-r from-red-600 via-rose-600 to-red-700 hover:from-red-500 hover:to-rose-500 text-white font-black font-unbounded text-xs uppercase tracking-widest shadow-[0_0_30px_rgba(255,30,39,0.4)] transition-all active:scale-95"
+                  >
+                    ЗАБРОНИРОВАТЬ СТОЛИК ↗
+                  </button>
+
+                  <div class="text-[11px] text-center text-neutral-500 font-mono-tech">
+                    Бармен перезвонит вам в течение 10 минут для подтверждения брони
+                  </div>
+                </form>
+
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Footer Bottom -->
+          <div class="mt-20 pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-mono-tech text-neutral-500">
+            <div>
+              © 2026 SHRIMP PUB. ВСЕ ПРАВА ЗАЩИЩЕНЫ. ЧРЕЗМЕРНОЕ УПОТРЕБЛЕНИЕ ПИВА ВЕДЕТ К ХОРОШИМ ИСТОРИЯМ.
+            </div>
+            <div class="flex items-center gap-4">
+              <a href="https://yandex.ru/maps/org/shrimp_pub/225095015509/?ll=30.322697%2C60.014952&z=14.18" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition-colors">ЯНДЕКС КАРТЫ</a>
+              <span>•</span>
+              <a href="https://t.me/shrimppub_spb" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition-colors">TELEGRAM</a>
+              <span>•</span>
+              <a href="https://vk.ru/shrimppub_spb" target="_blank" rel="noopener noreferrer" class="hover:text-red-400 transition-colors">VK</a>
+            </div>
+          </div>
+
+        </section>
+
+      </div>
+    </main>
+
+    <!-- Modal for Toasts / Popups -->
+    <div id="info-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-xl opacity-0 pointer-events-none transition-all duration-300">
+      <div class="relative bg-neutral-900 text-white rounded-3xl p-8 max-w-md w-full shadow-[0_0_80px_rgba(255,30,39,0.5)] border border-red-500/40">
+        <button id="modal-close" class="absolute top-4 right-4 text-neutral-400 hover:text-white text-lg">✕</button>
+        <div id="modal-icon" class="text-4xl mb-3">🔒</div>
+        <h3 id="modal-title" class="text-xl font-black uppercase text-white font-unbounded">Заголовок</h3>
+        <p id="modal-body" class="text-xs sm:text-sm text-neutral-300 font-mono-tech mt-3 leading-relaxed">Описание</p>
+        <div class="mt-6">
+          <button id="modal-action-btn" class="w-full py-3.5 rounded-xl bg-red-600 hover:bg-red-500 text-white font-bold text-xs uppercase font-mono-tech tracking-wider transition-colors shadow-[0_0_20px_rgba(255,30,39,0.4)]">
+            Понятно
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Main Module Script -->
+  </body>
+</html>
